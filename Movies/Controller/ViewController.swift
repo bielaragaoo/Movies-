@@ -4,14 +4,13 @@
 //
 //  Created by Gabriel Aragao on 25/04/22.
 //
-
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     let cellIdentifier = "MovieCell"
     var movies: MoviesData?
-
+    
     @IBOutlet weak var field: UITextField!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var label: UILabel!
@@ -20,10 +19,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         super.viewDidLoad()
         popularMovies()
+        
         table.delegate = self
         field.delegate = self
         table.dataSource = self
-    
+
         DispatchQueue.main.async { [self] in
             table.reloadData()
         }
@@ -46,13 +46,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         let indexPoster = movies?.results[indexPath.row].poster_path ?? "74xTEgt7R36Fpooo50r9T25onhq.jpg"
         
         let url = URL(string: "\(urlPoster)\(indexPoster)")
-//        let url = URL(string: "https://image.tmdb.org/t/p/original/74xTEgt7R36Fpooo50r9T25onhq.jpg")
-        
         let data = try! Data(contentsOf: url!)
         
         cell.imageView!.image = UIImage(data: data)
-        cell.imageView?.contentMode = .scaleAspectFill
-        
+    
         return cell
     }
     
@@ -61,9 +58,32 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
+//        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "movieDetails", sender: self)
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "movieDetails" {
+//
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//
+//            let destinationVC = segue.destination as! SelectionController
+//
+//            destinationVC.titlelbl = movies?.results[indexPath.row].title ?? "Nome do filme "
+//            destinationVC.popularitylbl = String((movies?.results[indexPath.row].popularity) ?? 1)
+//            destinationVC.overviewlbl = movies?.results[indexPath.row].overview ?? "Sinopse do filme"
+//
+//            let urlPoster = "https://image.tmdb.org/t/p/original/"
+//            let indexPoster = movies?.results[indexPath.row].poster_path ?? "74xTEgt7R36Fpooo50r9T25onhq.jpg"
+//            let url = URL(string: "\(urlPoster)\(indexPoster)")
+//            let data = try! Data(contentsOf: url!)
+//
+//            destinationVC.img = UIImage(data: data)!
+//            }
+//        }
+//        }
     func textFieldDidEndEditing(_ textField: UITextField) {
         field.text = " "
     }
@@ -119,4 +139,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
 
+    
+    
 }

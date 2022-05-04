@@ -14,7 +14,7 @@
 		291AFBA02817260F000D2C7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 291AFB9F2817260F000D2C7B /* Assets.xcassets */; };
 		291AFBA32817260F000D2C7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 291AFBA12817260F000D2C7B /* LaunchScreen.storyboard */; };
 		292DC5FE2819D1790089B547 /* MovielCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292DC5FC2819D1790089B547 /* MovielCell.swift */; };
-		292DC5FF2819D1790089B547 /* MovielCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 292DC5FD2819D1790089B547 /* MovielCell.xib */; };
+		299991B728219C3F00ABC16A /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299991B628219C3F00ABC16A /* SelectionController.swift */; };
 		29C38544281AF94C0049DB64 /* MoviesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C38543281AF94C0049DB64 /* MoviesData.swift */; };
 		6CEB1CB6D71D7505CB8D27AB /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48161FE5A9DD9BA9F43106B /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
@@ -30,7 +30,7 @@
 		291AFBA22817260F000D2C7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		291AFBA42817260F000D2C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		292DC5FC2819D1790089B547 /* MovielCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovielCell.swift; sourceTree = "<group>"; };
-		292DC5FD2819D1790089B547 /* MovielCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovielCell.xib; sourceTree = "<group>"; };
+		299991B628219C3F00ABC16A /* SelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionController.swift; sourceTree = "<group>"; };
 		29C38543281AF94C0049DB64 /* MoviesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesData.swift; sourceTree = "<group>"; };
 		3ED6F2D7E012175F66C8864F /* Pods-Movies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.debug.xcconfig"; path = "Target Support Files/Pods-Movies/Pods-Movies.debug.xcconfig"; sourceTree = "<group>"; };
 		A48161FE5A9DD9BA9F43106B /* Pods_Movies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +86,6 @@
 			children = (
 				291AFB9C2817260E000D2C7B /* Main.storyboard */,
 				292DC5FC2819D1790089B547 /* MovielCell.swift */,
-				292DC5FD2819D1790089B547 /* MovielCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				291AFB9A2817260E000D2C7B /* ViewController.swift */,
+				299991B628219C3F00ABC16A /* SelectionController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -121,7 +121,6 @@
 				3ED6F2D7E012175F66C8864F /* Pods-Movies.debug.xcconfig */,
 				063C34B0553D69E9867FC0E8 /* Pods-Movies.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -187,7 +186,6 @@
 				291AFBA32817260F000D2C7B /* LaunchScreen.storyboard in Resources */,
 				291AFBA02817260F000D2C7B /* Assets.xcassets in Resources */,
 				291AFB9E2817260E000D2C7B /* Main.storyboard in Resources */,
-				292DC5FF2819D1790089B547 /* MovielCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +223,7 @@
 			files = (
 				291AFB9B2817260E000D2C7B /* ViewController.swift in Sources */,
 				291AFB972817260E000D2C7B /* AppDelegate.swift in Sources */,
+				299991B728219C3F00ABC16A /* SelectionController.swift in Sources */,
 				291AFB992817260E000D2C7B /* SceneDelegate.swift in Sources */,
 				29C38544281AF94C0049DB64 /* MoviesData.swift in Sources */,
 				292DC5FE2819D1790089B547 /* MovielCell.swift in Sources */,
