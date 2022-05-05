@@ -24,8 +24,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         field.delegate = self
         table.dataSource = self
 
-        DispatchQueue.main.async { [self] in
-            table.reloadData()
+        DispatchQueue.main.async {
+        self.table.reloadData()
         }
     }
     
@@ -36,20 +36,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MovielCell
-        
+       
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.3
         
-        cell.configure(title: movies?.results[indexPath.row].title, overview: movies?.results[indexPath.row].overview, popularity: String((movies?.results[indexPath.row].popularity) ?? 1))
-       
-        let urlPoster = "https://image.tmdb.org/t/p/original/"
+        let urlPoster = "https://image.tmdb.org/t/p/w500/"
         let indexPoster = movies?.results[indexPath.row].poster_path ?? "74xTEgt7R36Fpooo50r9T25onhq.jpg"
-        
         let url = URL(string: "\(urlPoster)\(indexPoster)")
         let data = try! Data(contentsOf: url!)
         
-        cell.imageView!.image = UIImage(data: data)
-    
+//        DispatchQueue.main.async { [self] in
+//
+            cell.configure(title: movies?.results[indexPath.row].title, overview: movies?.results[indexPath.row].overview, popularity: String((movies?.results[indexPath.row].popularity) ?? 1))
+            
+            cell.imageView?.image = UIImage(data: data)
+//        }
         return cell
     }
     
@@ -61,7 +62,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         performSegue(withIdentifier: "movieDetails", sender: self)
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "movieDetails" {
 
@@ -73,7 +73,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             destinationVC.popularitylbl = String((movies?.results[indexPath.row].popularity) ?? 1)
             destinationVC.overviewlbl = movies?.results[indexPath.row].overview ?? "Sinopse do filme"
 
-            let urlPoster = "https://image.tmdb.org/t/p/original/"
+            let urlPoster = "https://image.tmdb.org/t/p/w500/"
             let indexPoster = movies?.results[indexPath.row].poster_path ?? "74xTEgt7R36Fpooo50r9T25onhq.jpg"
             let url = URL(string: "\(urlPoster)\(indexPoster)")
             let data = try! Data(contentsOf: url!)
@@ -82,7 +82,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
  }
-    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         field.text = " "
@@ -97,8 +96,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func popularMovies() {
         let popularMoviesURL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e5803888680a1daba772455ad6964c56"
-        
-        //        print(popularMoviesURL)
         performRequest(popularMoviesURL: popularMoviesURL)
         
     }
@@ -108,7 +105,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let url = URL(string: popularMoviesURL) {
             
             let session = URLSession(configuration: .default)
-            
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     print(error!)
@@ -117,10 +113,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 if let safeData = data {
                     self.parseJSON(moviesData: safeData)
-                    //            print(dataString)
                 }
             }
-            
             task.resume()
         }
     }
@@ -130,10 +124,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         do {
            let decodedData = try decoder.decode(MoviesData.self, from: moviesData)
             movies = decodedData
-//            index = decodedData.results.count
-//            movieName = decodedData.results[0].title
-//            overview = decodedData.results[0].overview
-//            popularity = decodedData.results[0].popularity
         } catch {
             print(error)
         }
